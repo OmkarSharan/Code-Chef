@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstdio>
+ 
+using namespace std;
+ 
+ 
+int main(){
+    int t;
+    scanf("%d",&t);
+    int total,n, k, count, flag = 0;;
+    while(t--){
+      scanf("%d %d",&n,&k);
+      total = 0;
+      flag = 0;
+      int hash[k];
+      for(int i = 1; i <= k; i++) hash[i] = 0;
+      while(n--){
+          int p;
+          count = 0;
+          scanf("%d",&p);
+          while(p--){
+              int pi;
+              scanf("%d",&pi);
+              if(hash[pi] == 0){
+                   hash[pi] = 1;
+                   total++;
+              }
+                   
+          }
+          if(total == k and flag == 0){
+              if(n == 0)
+                flag = 1;
+              else
+                flag = 2;
+              
+          } 
+      }
+      if(flag == 1) printf("all\n");
+      else if(flag == 2) printf("some\n");
+      else printf("sad\n");
+      
+    }
+    return 0;
+}   
