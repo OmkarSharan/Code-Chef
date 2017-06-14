@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstdio>
+#include <utility>
+#include <string>
+#include <set>
+using namespace std;
+ 
+ 
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+       char str[100];
+       int count = 0;
+       set<string> arr;
+       for(int i = 0; i < 4; i++){
+            cin>>str;
+            arr.insert(str);
+       }
+       for(int i = 0; i < 4; i++){
+            cin>>str;
+            if(arr.find(str) != arr.end()) count++;
+       }
+       if(count >= 2) printf("similar\n");
+       else printf("dissimilar\n");
+    }
+    return 0;
+}
