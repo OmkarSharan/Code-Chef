@@ -1,0 +1,66 @@
+/* You are required to complete this function
+which return the required missing number
+if present else return -1*/
+string IntToString (int a)
+{
+    ostringstream temp;
+    temp<<a;
+    return temp.str();
+}
+
+int missingNumber(const string& str){
+   int n=str.size();
+   int i=1,count, flag=0;
+   string mis="", next="", start="", rest="", sol="", ans="";
+   while(true){
+       sol="";
+       start=str.substr(0,i);
+       rest=str.substr(i);
+       if(start.size()>n/2){flag=1; break;}
+       sol+=start;
+       count=0;
+       flag=0;
+       while(true){
+            next = IntToString(atoi(start.c_str())+1);
+            mis = IntToString(atoi(next.c_str())+1);
+            cout<<start<<" "<<next<<" "<<rest<<endl;
+            if(!next.compare(rest.substr(0,next.size()))){
+                start=next;
+                rest=rest.substr(next.size());
+                sol+=start;
+            }
+            else if(!mis.compare(rest.substr(0,mis.size()))){
+                count++;
+                if(count == 1){
+                    ans=mis;
+                }
+                if(count >= 2) break;
+                start=mis;
+                rest=rest.substr(mis.size());
+                sol+=start;
+            }
+            else{
+                break;
+            }
+       
+             if(count>=2){
+                flag=1;
+                break;
+            }
+            if(!sol.compare(str)){
+                flag=0;
+                break;
+            }
+       //cout<<sol<<" 1\n";
+      }
+       //cout<<sol<<" 2\n";
+      i++;
+      if(flag == 1) break;
+      if(!sol.compare(str)){
+           flag=0;
+           break;
+      }
+   }
+   if(flag == 1 || count == 0) return -1;
+   else return atoi(ans.c_str());
+}
